@@ -15,17 +15,19 @@ async function list(req, res, next){
  
 async function isShowing(req, res, next){
   const isShowing = req.query.is_showing;
-  //console.log("IS SHOWING", isShowing);
   let result = await service.isShowing();
-  //console.log(result)
+  /*
+  DO NOT REMOVE. WORKING SOLUTION FOR SQLITE TESTS
+  COMMENTED OUT BECAUSE THERE IS A BETTER SOLUTION FOR POSTGRES DEPLOYMENT
+  SOLUTION FOR POSTGRES IS FOUND IN MOVIES.SERVICE isShowing FUNCTION
   for(let i=0; i<result.length-1; i++){
     if(result[i].movie_id===result[i+1].movie_id){
       //console.log(result[i].movie_id)
-      result.splice(i, 2)
+      result.splice(i, 2);
     }
   }
-  //console.log(result)
-  res.json({data: result})
+  */
+  res.json({data: result});
 }
 
 async function read(req, res, next){

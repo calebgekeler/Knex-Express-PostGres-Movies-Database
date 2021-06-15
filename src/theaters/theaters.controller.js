@@ -12,7 +12,7 @@ async function list(req, res, next){
   tree.grow(result)
   finalTree = tree.getData()
   //result = treeize(result);
-  console.log(finalTree)
+  //console.log(finalTree)
   res.json({data: finalTree});
 }
 

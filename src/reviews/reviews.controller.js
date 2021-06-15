@@ -15,7 +15,7 @@ async function doesReviewExist(req, res, next){
   });
 }
 
-async function update(req, res, next){
+async function update(req, res){
   const updatedReview = {
     ...res.locals.review,
     ...req.body.data,
@@ -25,11 +25,10 @@ async function update(req, res, next){
   await service.update(updatedReview);
   let result = await service.queryAfterUpdate(updatedReview.review_id);
   result = treeize(result);
-  //console.log(result)
   res.json({data: result});
 }
 
-async function destroy(req, res, next){
+async function destroy(req, res){
   await service.delete(
   res.locals.review.review_id
   );

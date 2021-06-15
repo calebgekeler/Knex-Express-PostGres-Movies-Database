@@ -8,12 +8,14 @@ function list(){
 }
 
 function isShowing(){
-  const result = knex("movies as m")
-    .select("m.*")
+  return knex("movies as m")
     .join("movies_theaters as mt", "m.movie_id", "mt.movie_id")
-    .where({"mt.is_showing": true});
-    //console.log(result)
-  return result;
+    .select("m.*", "mt.*")
+    .where({ "mt.is_showing": true })
+    .distinctOn("mt.movie_id"); 
+    // this doesnt not work with SQLite which is used for testing.
+    // to make it work with SQLite, uncomment code in movies.controller
+    // and comment out .distinctOn("mt.movie_id");
 }
 
 function read(id){

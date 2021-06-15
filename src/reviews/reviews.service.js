@@ -20,7 +20,6 @@ function queryAfterUpdate(id){
   return knex("reviews as r")
     .where({"r.review_id": id})
     .join("critics as c")
-    //.where("c.critic_id", "r.critic_id")
     .select(
       "r.*",
       "r.created_at",
